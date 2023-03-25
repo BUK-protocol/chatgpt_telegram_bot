@@ -289,7 +289,6 @@ async def voice_message_handle(update: Update, context: CallbackContext):
 
     # update n_transcribed_seconds
     db.set_user_attribute(user_id, "n_transcribed_seconds", voice.duration + db.get_user_attribute(user_id, "n_transcribed_seconds"))
-
     await message_handle(update, context, message=transcribed_text)
 
 
@@ -463,8 +462,8 @@ async def error_handle(update: Update, context: CallbackContext) -> None:
 async def post_init(application: Application):
     await application.bot.set_my_commands([
         BotCommand("/new", "Start new dialog"),
-        BotCommand("/team", "Show me about founders and the team"),
         BotCommand("/retry", "Re-generate response for previous query"),
+        BotCommand("/team", "Show me about founders and the team"),
         BotCommand("/fundraising", "Show current fundraising status"),
         BotCommand("/investment", "Generate comprehensive Investment Memo with all relevant Hyperlinks"),
         BotCommand("/help", "Show help message"),
