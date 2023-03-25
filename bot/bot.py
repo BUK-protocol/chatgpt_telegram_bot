@@ -39,13 +39,7 @@ db = database.Database()
 logger = logging.getLogger(__name__)
 user_semaphores = {}
 
-HELP_MESSAGE = """Commands:
-⚪ /new – Restart Conversation
-⚪ /retry – Regenerate last answer
-⚪ /team – About Team
-⚪ /investment – Generate Investment Memo
-⚪ /fundraising – Show Fundraising Status
-⚪ /help – Show help
+HELP_MESSAGE = """Ask me anything about Buk & the Hotel industry. Go Ahead.
 """
 #⚪ /retry – Regenerate last bot answer
 #⚪ /new – Start new dialog
@@ -105,7 +99,7 @@ async def start_handle(update: Update, context: CallbackContext):
     reply_text = "Hi! I'm <b>ChatGPT</b> bot built to respond on any query pertaining to investment in <b>Buk Technology</b> 🤖\n\n"
     reply_text += HELP_MESSAGE
 
-    reply_text += "\nAsk me anything about Buk. Go Ahead!"
+    reply_text += "\nI can even generate an Investment memo for you! Just ask me for it."
     
     await update.message.reply_text(reply_text, parse_mode=ParseMode.HTML)
 
@@ -463,9 +457,6 @@ async def post_init(application: Application):
     await application.bot.set_my_commands([
         BotCommand("/new", "Start new dialog"),
         BotCommand("/retry", "Re-generate response for previous query"),
-        BotCommand("/team", "Show me about founders and the team"),
-        BotCommand("/fundraising", "Show current fundraising status"),
-        BotCommand("/investment", "Generate comprehensive Investment Memo with all relevant Hyperlinks"),
         BotCommand("/help", "Show help message"),
     ])
 
