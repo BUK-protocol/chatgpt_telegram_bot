@@ -40,14 +40,19 @@ logger = logging.getLogger(__name__)
 user_semaphores = {}
 
 HELP_MESSAGE = """Commands:
-⚪ /retry – Regenerate last bot answer
-⚪ /new – Start new dialog
-⚪ /mode – Select chat mode
-⚪ /settings – Show settings
-⚪ /balance – Show balance
+⚪ /new – Restart Conversation
+⚪ /retry – Regenerate last answer
+⚪ /team – About Team
+⚪ /investment – Generate Investment Memo
+⚪ /fundraising – Show Fundraising Status
 ⚪ /help – Show help
 """
-
+#⚪ /retry – Regenerate last bot answer
+#⚪ /new – Start new dialog
+#⚪ /mode – Select chat mode
+#⚪ /investment – Show Investment Memo
+#⚪ /balance – Show balance
+#⚪ /help – Show help
 
 def split_text_into_chunks(text, chunk_size):
     for i in range(0, len(text), chunk_size):
@@ -97,10 +102,10 @@ async def start_handle(update: Update, context: CallbackContext):
     db.set_user_attribute(user_id, "last_interaction", datetime.now())
     db.start_new_dialog(user_id)
     
-    reply_text = "Hi! I'm <b>ChatGPT</b> bot implemented with GPT-3.5 OpenAI API 🤖\n\n"
+    reply_text = "Hi! I'm <b>ChatGPT</b> bot built to respond on any query pertaining to investment in <b>Buk Technology</b> 🤖\n\n"
     reply_text += HELP_MESSAGE
 
-    reply_text += "\nAnd now... ask me anything!"
+    reply_text += "\nAsk me anything about Buk. Go Ahead!"
     
     await update.message.reply_text(reply_text, parse_mode=ParseMode.HTML)
 
@@ -458,10 +463,10 @@ async def error_handle(update: Update, context: CallbackContext) -> None:
 async def post_init(application: Application):
     await application.bot.set_my_commands([
         BotCommand("/new", "Start new dialog"),
-        BotCommand("/mode", "Select chat mode"),
+        BotCommand("/team", "Show me about founders and the team"),
         BotCommand("/retry", "Re-generate response for previous query"),
-        BotCommand("/balance", "Show balance"),
-        BotCommand("/settings", "Show settings"),
+        BotCommand("/fundraising", "Show current fundraising status"),
+        BotCommand("/investment", "Generate comprehensive Investment Memo with all relevant Hyperlinks"),
         BotCommand("/help", "Show help message"),
     ])
 
