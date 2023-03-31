@@ -39,7 +39,7 @@ assistant:
   parse_mode: html
 
 
-buk_founder:
+buk_fonder:
   name: Buk Founder Bot
   welcome_message: Hi, I'm the <b>Founder of Buk Technology</b>. Feel free to ask me any question regarding Buk and I will respond to the best of my abilities.
   prompt_start: |
