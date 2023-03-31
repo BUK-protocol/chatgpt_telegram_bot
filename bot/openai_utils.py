@@ -8,7 +8,7 @@ openai.api_key = config.openai_api_key
 CHAT_MODES = config.chat_modes
 
 OPENAI_COMPLETION_OPTIONS = {
-    "temperature": 0.7,
+    "temperature": 0.1,
     "max_tokens": 1000,
     "top_p": 1,
     "frequency_penalty": 0,
